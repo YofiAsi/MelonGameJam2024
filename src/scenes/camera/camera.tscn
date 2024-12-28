@@ -1,0 +1,62 @@
+[gd_scene load_steps=13 format=3 uid="uid://dnorect287hh7"]
+
+[ext_resource type="Script" path="res://src/scenes/camera/camera.gd" id="1_0vvip"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="2_jmb0i"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="3_ikt6s"]
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_lcv41"]
+[ext_resource type="Script" path="res://addons/shaker/src/Vector2/shaker_component2D.gd" id="5_f8igu"]
+[ext_resource type="Script" path="res://addons/shaker/data/Vector2/BaseShakerType2D.gd" id="6_3dnne"]
+[ext_resource type="Script" path="res://addons/shaker/data/Vector2/ShakerTypeSineWave2D.gd" id="7_nc8rd"]
+[ext_resource type="Script" path="res://addons/shaker/data/Single/BaseShakerType1D.gd" id="8_ewtxy"]
+[ext_resource type="Script" path="res://addons/shaker/data/Vector2/ShakerPreset2D.gd" id="9_1nrkq"]
+
+[sub_resource type="Resource" id="Resource_ngg7f"]
+script = ExtResource("3_ikt6s")
+duration = 1.0
+transition = 0
+ease = 2
+
+[sub_resource type="Resource" id="Resource_b57rx"]
+script = ExtResource("7_nc8rd")
+frequency = Vector2(5, 5)
+phase = Vector2(1, 1)
+amplitude = Vector2(5, 5)
+offset = Vector2(0, 0)
+BlendingMode = 0
+fade_in = 0.0
+fade_out = 0.0
+start_percent = 0.0
+end_percent = 1.0
+_temp_graph = false
+bake_internal = 64
+
+[sub_resource type="Resource" id="Resource_lc2ib"]
+script = ExtResource("9_1nrkq")
+PositionShake = Array[ExtResource("6_3dnne")]([SubResource("Resource_b57rx")])
+RotationShake = Array[ExtResource("8_ewtxy")]([])
+ScaleShake = Array[ExtResource("6_3dnne")]([])
+bake_internal = 64
+__follow_timeline = false
+
+[node name="Camera" type="Node2D"]
+script = ExtResource("1_0vvip")
+
+[node name="PhantomCamera2D" type="Node2D" parent="."]
+top_level = true
+script = ExtResource("2_jmb0i")
+follow_mode = 2
+tween_resource = SubResource("Resource_ngg7f")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="PhantomCameraHost" type="Node" parent="Camera2D"]
+process_priority = 300
+process_physics_priority = 300
+script = ExtResource("4_lcv41")
+
+[node name="ShakerComponent2D" type="Node2D" parent="Camera2D"]
+script = ExtResource("5_f8igu")
+intensity = 5.0
+duration = 0.3
+fade_in = 0.00612951
+shakerPreset = SubResource("Resource_lc2ib")
