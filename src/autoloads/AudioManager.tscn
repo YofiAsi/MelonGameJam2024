@@ -1,0 +1,42 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb80ns0cqjkn"]
+
+[ext_resource type="Script" path="res://src/autoloads/audio_manager.gd" id="1_sjlg4"]
+
+[node name="AudioManager" type="Node"]
+script = ExtResource("1_sjlg4")
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="Player" type="Node" parent="SFX"]
+
+[node name="GunShoot" type="AudioStreamPlayer" parent="SFX/Player"]
+
+[node name="HpPickup" type="AudioStreamPlayer" parent="SFX/Player"]
+
+[node name="LevelUp" type="AudioStreamPlayer" parent="SFX/Player"]
+
+[node name="XpPickup" type="AudioStreamPlayer" parent="SFX/Player"]
+
+[node name="PlayerDash" type="AudioStreamPlayer" parent="SFX/Player"]
+
+[node name="PlayerTransform" type="AudioStreamPlayer" parent="SFX/Player"]
+
+[node name="Enemy" type="Node" parent="SFX"]
+
+[node name="EnemyHit" type="AudioStreamPlayer" parent="SFX/Enemy"]
+
+[node name="Game" type="Node" parent="SFX"]
+
+[node name="Stream" type="AudioStreamPlayer" parent="SFX/Game"]
+
+[node name="ButtonHover" type="AudioStreamPlayer" parent="SFX/Game"]
+
+[node name="ButtonPress" type="AudioStreamPlayer" parent="SFX/Game"]
+
+[node name="Pause" type="AudioStreamPlayer" parent="SFX/Game"]
+
+[node name="Music" type="Node" parent="."]
+
+[node name="PreSong" type="AudioStreamPlayer" parent="Music"]
+
+[node name="MainSong" type="AudioStreamPlayer" parent="Music"]
