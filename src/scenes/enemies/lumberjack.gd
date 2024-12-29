@@ -5,6 +5,9 @@ extends Node2D
 
 var dead: bool = false
 
+func _ready() -> void:
+	pass
+
 func _process(delta: float) -> void:
 	if self.dead:
 		return

@@ -136,6 +136,7 @@ offset = Vector2(0, -15)
 
 [node name="Hurtbox2D" type="Area2D" parent="." node_paths=PackedStringArray("movement_2d")]
 script = ExtResource("2_csgvm")
+BASE_MAX_HP = 50
 movement_2d = NodePath("../Movement2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox2D"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c5r4m16m76lv2"]
+[gd_scene load_steps=26 format=3 uid="uid://c5r4m16m76lv2"]
 
 [ext_resource type="Script" path="res://addons/YofiComponents/components/control_2d/player_control_2d.gd" id="1_fgnes"]
 [ext_resource type="Script" path="res://src/scenes/player/player.gd" id="1_j3gql"]
@@ -10,8 +10,11 @@
 [ext_resource type="Texture2D" uid="uid://bvvhda65f1d3s" path="res://assets/sprites/polar_bear/little-bear-idle.png" id="6_om1o7"]
 [ext_resource type="Texture2D" uid="uid://bp07gn3ai63o3" path="res://assets/sprites/polar_bear/little-bear-walk.png" id="7_hh1mu"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wvpqx"]
+size = Vector2(76, 90)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4wsua"]
-size = Vector2(51, 59)
+size = Vector2(34, 42)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0r7fv"]
 atlas = ExtResource("4_dtfyr")
@@ -134,35 +137,45 @@ movement_control = NodePath("../Movement2D")
 position = Vector2(2, -1)
 script = ExtResource("2_itwbw")
 BASE_ACCELERATION = 9999.0
+BASE_DECELERATION = 2000.0
 BASE_TURN_SPEED = 99999.0
 BASE_MAX_SPEED = 400.0
 animated_sprite = NodePath("../AnimationManager")
 
 [node name="Hurtbox2D" type="Area2D" parent="." groups=["player"]]
+position = Vector2(0, 37)
 script = ExtResource("5_d68in")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox2D"]
-position = Vector2(-3.5, 2.5)
+[node name="Big" type="CollisionShape2D" parent="Hurtbox2D"]
+position = Vector2(-1, -42)
+shape = SubResource("RectangleShape2D_wvpqx")
+
+[node name="Small" type="CollisionShape2D" parent="Hurtbox2D"]
+position = Vector2(0, -19)
 shape = SubResource("RectangleShape2D_4wsua")
 
 [node name="AnimationManager" type="Node2D" parent="."]
+position = Vector2(0, 38)
 script = ExtResource("5_jyfic")
 
 [node name="BigAnimatedSprite" type="AnimatedSprite2D" parent="AnimationManager"]
-position = Vector2(5, -16)
+position = Vector2(4, 0)
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_yltia")
 animation = &"idle"
 autoplay = "idle"
+offset = Vector2(0, -16)
 
 [node name="SmallAnimatedSprite" type="AnimatedSprite2D" parent="AnimationManager"]
-visible = false
+position = Vector2(-1, 0)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_46bjo")
 animation = &"idle"
 autoplay = "idle"
+offset = Vector2(0, -16)
 
 [node name="Gun360" parent="." instance=ExtResource("5_estjq")]
 radius = 50.0
-dmg = 10
+active = false
+dmg = 20
 knockback_force = 500.0
