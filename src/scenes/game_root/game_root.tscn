@@ -1,0 +1,24 @@
+[gd_scene load_steps=6 format=3 uid="uid://bncady5tbiqvl"]
+
+[ext_resource type="Script" path="res://src/scenes/game_root/game_root.gd" id="1_0ki88"]
+[ext_resource type="PackedScene" uid="uid://b2tx8a74p18yu" path="res://src/ui/pause_menu.tscn" id="1_vvpov"]
+[ext_resource type="PackedScene" uid="uid://dt075nt4lg5ut" path="res://src/scenes/game_root/game_manager.tscn" id="2_w5syi"]
+[ext_resource type="Script" path="res://src/ui/pause_menu.gd" id="3_1lci2"]
+[ext_resource type="Script" path="res://src/scenes/game_root/game_manager.gd" id="5_mpo6u"]
+
+[node name="GameRoot" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_0ki88")
+
+[node name="PauseMenu" parent="." instance=ExtResource("1_vvpov")]
+script = ExtResource("3_1lci2")
+
+[node name="GameManager" parent="." instance=ExtResource("2_w5syi")]
+process_mode = 1
+script = ExtResource("5_mpo6u")
+
+[connection signal="pressed" from="PauseMenu/Control/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="PauseMenu/Control/VBoxContainer/Restart" to="." method="_on_restart_pressed"]
+[connection signal="pressed" from="PauseMenu/Control/VBoxContainer/Credits" to="." method="_on_credits_pressed"]
+
+[editable path="PauseMenu"]

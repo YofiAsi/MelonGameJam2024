@@ -1,0 +1,131 @@
+[gd_scene load_steps=10 format=3 uid="uid://bvxy002outyrw"]
+
+[ext_resource type="Script" path="res://src/scenes/root.gd" id="1_o72g0"]
+[ext_resource type="Texture2D" uid="uid://cetg0hn5360c4" path="res://assets/sprites/polar_bear/PolarBearSpriteSheet.png" id="1_wunq6"]
+[ext_resource type="Texture2D" uid="uid://bvvhda65f1d3s" path="res://assets/sprites/polar_bear/little-bear-idle.png" id="2_ofcvn"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2owj8"]
+font_size = 120
+outline_size = 60
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_noscj"]
+font_size = 40
+outline_size = 25
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hcetl"]
+atlas = ExtResource("1_wunq6")
+region = Rect2(640, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2w7c2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hcetl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fy186"]
+atlas = ExtResource("2_ofcvn")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qvgaj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fy186")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Root" type="Node2D"]
+script = ExtResource("1_o72g0")
+
+[node name="MainMenu" type="CanvasLayer" parent="."]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -141.0
+offset_top = 459.0
+offset_right = 142.0
+offset_bottom = 638.0
+grow_horizontal = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="Button" type="Button" parent="MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(200, 80)
+layout_mode = 2
+text = "Start"
+
+[node name="Music" type="HSlider" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="SFX" type="HSlider" parent="MainMenu/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainMenu"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 118.0
+offset_bottom = 405.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+text = "Bipolar Polar Bear"
+label_settings = SubResource("LabelSettings_2owj8")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="MainMenu"]
+visible = false
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -4.0
+offset_top = 224.0
+offset_right = -4.0
+offset_bottom = 511.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+text = "By YofiAsi"
+label_settings = SubResource("LabelSettings_noscj")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="MainMenu"]
+offset_left = 753.0
+offset_top = 599.0
+offset_right = 799.0
+offset_bottom = 622.0
+text = "SFX
+"
+
+[node name="Label4" type="Label" parent="MainMenu"]
+offset_left = 753.0
+offset_top = 567.0
+offset_right = 799.0
+offset_bottom = 590.0
+text = "Music"
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(543, 523)
+scale = Vector2(35, 35)
+sprite_frames = SubResource("SpriteFrames_2w7c2")
+frame_progress = 0.821842
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(1600, 763)
+scale = Vector2(20, 20)
+sprite_frames = SubResource("SpriteFrames_qvgaj")
+flip_h = true
+
+[connection signal="pressed" from="MainMenu/VBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="value_changed" from="MainMenu/VBoxContainer/Music" to="." method="_on_music_value_changed"]
+[connection signal="value_changed" from="MainMenu/VBoxContainer/SFX" to="." method="_on_sfx_value_changed"]
