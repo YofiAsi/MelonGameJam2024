@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ck1xtfhks0y7b"]
+
+[ext_resource type="Texture2D" uid="uid://cuf03robaw6vj" path="res://assets/sprites/ground/Snow_Pine.png" id="1_lqu8y"]
+
+[node name="Snow" type="Sprite2D"]
+position = Vector2(0, -60)
+scale = Vector2(5, 5)
+texture = ExtResource("1_lqu8y")
+offset = Vector2(0, 8)
